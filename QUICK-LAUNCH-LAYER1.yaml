@@ -40,9 +40,3 @@ Resources:
         BaseVpcId: !GetAtt AdopVPC.Outputs.BaseVpcId
       TimeoutInMinutes: '60'
     DependsOn: AdopPublicNetwork
-
-Outputs:
-  VpnEip:
-    Value: !GetAtt EIPRef.Outputs.VpnEip
-  VpnEip:
-    Value: !GetAtt AdopPrivateNetwork.Outputs.PrivateSubnet
