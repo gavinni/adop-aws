@@ -88,6 +88,7 @@ Mappings:
     us-west-1:
       AMI: ami-4826c22b
     ap-southeast-1:
+      # AMI: ami-08d0427c42d530622
       AMI: ami-8e0205f2
     ap-southeast-2:
       AMI: ami-d8c21dba
@@ -131,6 +132,7 @@ Resources:
 
   S3UploadRole:
     Properties:
+      ManagedPolicyArns: arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
       AssumeRolePolicyDocument:
         Statement:
         - Action:
