@@ -5,11 +5,11 @@ Resources:
     Properties:
       TemplateURL: https://s3.amazonaws.com/adop-infra/component-pre-eip.yaml
       TimeoutInMinutes: '60'
-  AdopFlowlogs:
-    Type: AWS::CloudFormation::Stack
-    Properties:
-      TemplateURL: https://s3.amazonaws.com/adop-infra/component-role-flowLogs.yaml
-      TimeoutInMinutes: '60'
+  # AdopFlowlogs:
+  #   Type: AWS::CloudFormation::Stack
+  #   Properties:
+  #     TemplateURL: https://s3.amazonaws.com/adop-infra/component-role-flowLogs.yaml
+  #     TimeoutInMinutes: '60'
   AdopVPC:
     Type: AWS::CloudFormation::Stack
     Properties:
@@ -40,17 +40,17 @@ Resources:
         BaseVpcId: !GetAtt AdopVPC.Outputs.BaseVpcId
       TimeoutInMinutes: '60'
     DependsOn: AdopPublicNetwork
-  AdopService:
-    Type: AWS::CloudFormation::Stack
-    Properties:
-      TemplateURL: https://s3.amazonaws.com/adop-infra/service-adop-c.yaml
-      Parameters:
-        AdopUsername: 'adop'
-        AdopUserPassword: 'adop1234'
-        SecretS3BucketStore: 'adop-data'
-        VpcID: !GetAtt AdopVPC.Outputs.BaseVpcId
-        VPCSubnet: !GetAtt AdopPrivateNetwork.Outputs.PrivateSubnetId
-        KeyName: 'gavin'
-        NtpRegion: 'sg'
-      TimeoutInMinutes: '60'
-    DependsOn: AdopPublicNetwork
+  # AdopService:
+  #   Type: AWS::CloudFormation::Stack
+  #   Properties:
+  #     TemplateURL: https://s3.amazonaws.com/adop-infra/service-adop-c.yaml
+  #     Parameters:
+  #       AdopUsername: 'adop'
+  #       AdopUserPassword: 'adop1234'
+  #       SecretS3BucketStore: 'adop-data'
+  #       VpcID: !GetAtt AdopVPC.Outputs.BaseVpcId
+  #       VPCSubnet: !GetAtt AdopPrivateNetwork.Outputs.PrivateSubnetId
+  #       KeyName: 'gavin'
+  #       NtpRegion: 'sg'
+  #     TimeoutInMinutes: '60'
+  #   DependsOn: AdopPublicNetwork
