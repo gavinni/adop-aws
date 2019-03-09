@@ -15,7 +15,7 @@ Resources:
     Properties:
       TemplateURL: https://s3.amazonaws.com/adop-infra/component-vpc.yaml
       Parameters:
-        FlowLogARN: !ImportValue ARNID
+        FlowLogARN: !ImportValue FlowLogRoles:ARNID
       TimeoutInMinutes: '60'
     # DependsOn: AdopFlowlogs
   AdopPublicNetwork:

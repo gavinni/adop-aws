@@ -4,29 +4,29 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: |
   Layer 0 - Base Infrastructure - VPC Flow Logs IAM Role Template.
-Resources: 
-  FlowLogRoles: 
+Resources:
+  FlowLogRoles:
     Type: "AWS::IAM::Role"
-    Properties: 
-      AssumeRolePolicyDocument: 
+    Properties:
+      AssumeRolePolicyDocument:
         Version: "2012-10-17"
-        Statement: 
-          - 
+        Statement:
+          -
             Effect: "Allow"
             Sid: ""
-            Principal: 
-              Service: 
+            Principal:
+              Service:
                 - "vpc-flow-logs.amazonaws.com"
-            Action: 
+            Action:
               - "sts:AssumeRole"
       Path: "/"
-      Policies: 
-        - 
+      Policies:
+        -
           PolicyName: "Flow-Logs-Policy"
-          PolicyDocument: 
+          PolicyDocument:
             Version: "2012-10-17"
-            Statement: 
-              - 
+            Statement:
+              -
                 Effect: "Allow"
                 Action:
                   - "logs:CreateLogGroup"
@@ -34,7 +34,7 @@ Resources:
                   - "logs:PutLogEvents"
                   - "logs:DescribeLogGroups"
                   - "logs:DescribeLogStreams"
-                    
+
                 Resource: "*"
       RoleName: !Join [ "-", [ !Ref "AWS::StackName" ,"Flow", "Logs", "Roles"] ]
 
@@ -42,4 +42,6 @@ Outputs:
   ARNID:
     Description: "ARN ID of the created role for Flow-Logs."
     Value:  !GetAtt [FlowLogRoles, Arn]
+    Export:
+      Name: FlowLogRoles:ARNID
 ...
