@@ -131,8 +131,8 @@ Resources:
         ToPort: '25826'
 
   S3UploadRole:
+    Type: AWS::IAM::Role
     Properties:
-      ManagedPolicyArns: arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
       AssumeRolePolicyDocument:
         Statement:
         - Action:
@@ -142,14 +142,16 @@ Resources:
             Service:
             - ec2.amazonaws.com
       Path: "/"
-    Type: AWS::IAM::Role
+      ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM
+
 
   S3UploadRoleProfile:
+    Type: AWS::IAM::InstanceProfile
     Properties:
       Path: "/"
       Roles:
       - Ref: S3UploadRole
-    Type: AWS::IAM::InstanceProfile
 
   S3UploadRolePolicy:
     Properties:
